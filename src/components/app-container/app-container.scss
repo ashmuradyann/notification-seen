@@ -1,0 +1,57 @@
+.app-container {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  border: 1px solid #acacac;
+  border-radius: 5px;
+
+  .navbar {
+    width: 100%;
+    border-bottom: 1px solid #acacac;
+
+    .user {
+      margin-right: 5px;
+      p {
+        margin-right: 10px;
+      }
+      .avatar {
+        width: 40px;
+        height: 40px;
+        background-color: #eee;
+        border-radius: 50px;
+        font-size: 1.5rem;
+      }
+    }
+
+    .logout {
+      cursor: pointer;
+      transition: .3s;
+      border-bottom: 2px solid #fff;
+      &:hover {
+        border-bottom: 2px solid;
+      }  
+    }
+  }
+
+  .wrapper {
+    width: 100%;
+    min-height: 80vh;
+
+    div {
+      padding: 5px;
+    }
+  }
+}
+
+.unread-count {
+  width: 20px;
+  height: 20px;
+  margin: 2px 5px 0 -18px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(207, 90, 90);
+  color: #fff;
+  font-size: .7rem;
+}

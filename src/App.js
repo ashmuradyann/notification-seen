@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useRef, useState } from "react"
 
-function App() {
+import AppContainer from "./components/app-container/AppContainer";
+import Form from "./components/form/Form";
+
+const App = () => {
+
+  const [loged, setLoged] = useState(false)
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setLoged(true)
+    }
+  }, [loged])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app flex-center">
+      {loged ? <AppContainer setLoged={setLoged} /> : <Form setLoged={setLoged} />}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
