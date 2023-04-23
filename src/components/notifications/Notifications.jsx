@@ -7,20 +7,6 @@ const Notifications = ({ notifications, setNotifications }) => {
   const unreadMessages = notifications.filter((el) => !el.seen);
   const refs = useRef(unreadMessages.map(() => React.createRef()));
 
-  const isInViewport = (element) => {
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <=
-          (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <=
-          (window.innerWidth || document.documentElement.clientWidth)
-      );
-    }
-  };
-
   const checkAndRead = () => {
     let observer = new Hunt(
       refs.current.map((ref) => ref.current),
