@@ -32,3 +32,23 @@
     }
   }
 }
+
+.readed {
+  background-color: #fff;
+
+  div {
+    span {
+      display: none;
+    }
+  }
+}
+
+.unreaded {
+  background-color: #a8c3df71;
+
+  div {
+    span {
+      display: block;
+    }
+  }
+}

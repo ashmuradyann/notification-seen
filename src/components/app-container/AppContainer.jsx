@@ -39,7 +39,6 @@ const AppContainer = ({ setLoged }) => {
             <Tab sx={{ fontSize: '1.2rem' }} label="Главная" value="0" />
             <Tab
               sx={{ fontSize: '1.2rem' }}
-              data-count={unreadCount > 9 ? '9+' : unreadCount}
               label="Уведомления"
               value="1"
             />

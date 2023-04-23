@@ -1,4 +1,5 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import Hunt from 'huntjs';
 
 import './notifications.scss';
 
@@ -21,18 +22,25 @@ const Notifications = ({ notifications, setNotifications }) => {
   };
 
   const checkAndRead = () => {
-    const readed = notifications.map((el, i) => {
-      if (isInViewport(refs.current[i]?.current)) {
-        return {
-          ...el,
-          seen: true,
-        };
+    let observer = new Hunt(
+      refs.current.map((ref) => ref.current),
+      {
+        enter: (ref) => {
+          setTimeout(() => {
+            ref.className = 'notification readed';
+            setNotifications(prev => prev.map(notification => {
+              if (notification.id + "" === ref.id) {
+                return {
+                  ...notification,
+                  seen: true
+                }
+              }
+              return notification
+            }))
+          }, 5000);
+        },
       }
-      return el;
-    });
-    setTimeout(() => {
-      setNotifications(readed);
-    }, 5000);
+    );
   };
 
   window.onscroll = () => {
@@ -53,20 +61,12 @@ const Notifications = ({ notifications, setNotifications }) => {
         return (
           <div
             ref={refs.current[i]}
-            style={{
-              backgroundColor: seen ? '#fff' : '#a8c3df71',
-            }}
+            className={`notification ${seen ? 'readed' : 'unreaded'}`}
             id={id}
-            className="notification"
             key={i}
           >
             <div className="flex-center">
-              <span
-                style={{
-                  display: seen ? 'none' : 'block',
-                }}
-                className="unread"
-              ></span>
+              <span className="unread"></span>
               <h2>{category}</h2>
             </div>
             <p>{message}</p>
@@ -77,4 +77,4 @@ const Notifications = ({ notifications, setNotifications }) => {
   );
 };
 
-export default memo(Notifications);
+export default Notifications;
